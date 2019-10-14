@@ -5,7 +5,7 @@ from bs4 import BeautifulSoup
 
 WEBSITE_URL = 'https://www.hardmob.com.br/forums/407-Promocoes'
 
-def get_promocoes(event, context):
+def get_promocoes(event = None, context = None):
 
     r = requests.get(WEBSITE_URL)
 
@@ -13,9 +13,7 @@ def get_promocoes(event, context):
         raise
 
     soup = BeautifulSoup(r.text, 'lxml')
-
     div_links = soup.select('#threadlist')[0]
-
     links = div_links.select('.title')
 
     i = 0
